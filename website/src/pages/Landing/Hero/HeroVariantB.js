@@ -229,6 +229,21 @@ function HeroVariantB() {
       </style>
       <div style={styles.wrapper}>
         <div style={styles.gridLines} />
+        {/* Soft green ambient glow centered on section */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '900px',
+            height: '900px',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(circle, rgba(46,160,67,0.1) 0%, rgba(46,160,67,0.04) 35%, transparent 65%)',
+            pointerEvents: 'none',
+          }}
+        />
 
         <div className="heroB-inner" style={styles.inner}>
           <div style={styles.left}>

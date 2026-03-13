@@ -39,6 +39,17 @@ const keyframes = `
   0% { stroke-dashoffset: 0; }
   100% { stroke-dashoffset: -16; }
 }
+.heroG-cta-primary {
+  color: #fff !important;
+}
+.heroG-cta-primary:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.heroG-corner-terminal:hover {
+  opacity: 0.8 !important;
+  pointer-events: auto !important;
+}
 @media (max-width: 900px) {
   .heroG-corner-terminal { display: none !important; }
   .heroG-connections { display: none !important; }
@@ -68,8 +79,7 @@ function MiniTerminal({name, lines, statusColor, opacity, style, className}) {
         borderRadius: '8px',
         overflow: 'hidden',
         opacity,
-        pointerEvents: 'none',
-        transition: 'opacity 0.8s ease, border-color 0.5s ease',
+        transition: 'opacity 0.3s ease, border-color 0.5s ease',
         boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
         ...style,
       }}>
@@ -163,14 +173,14 @@ function getNodeLines(phase, nodeIndex) {
         lines: [
           {text: '$ protocol listen', color: '#3fb950'},
           {text: '  ● New deployment detected', color: '#56d364'},
-          {text: '  Pulling v1.2.0...', color: '#8b949e'},
+          {text: '  Pulling v1.2.4...', color: '#8b949e'},
         ],
         statusColor: '#3fb950',
       };
     case 'pulling':
       return {
         lines: [
-          {text: '  ● Pulling v1.2.0...', color: '#56d364'},
+          {text: '  ● Pulling v1.2.4...', color: '#56d364'},
           {text: '  Downloading artifacts...', color: '#8b949e'},
           {text: '  ████████░░░░ 67%', color: '#3fb950'},
         ],
@@ -229,41 +239,43 @@ function getNodeLines(phase, nodeIndex) {
 function getCentralLines(phase) {
   switch (phase) {
     case 'listening':
-      return [{text: '$ protocol deploy', color: '#6e7681', opacity: 0.5}];
+      return [
+        {text: "$ protocol deploy 'v1.2.4'", color: '#6e7681', opacity: 0.5},
+      ];
     case 'deploying':
       return [
-        {text: '$ protocol deploy', color: '#3fb950'},
-        {text: '  Deploying v1.2.0 to fleet...', color: '#8b949e'},
+        {text: "$ protocol deploy 'v1.2.4'", color: '#3fb950'},
+        {text: '  Deploying v1.2.4 to fleet...', color: '#8b949e'},
         {text: '  4 nodes listening', color: '#8b949e'},
       ];
     case 'detected':
     case 'pulling':
       return [
-        {text: '$ protocol deploy', color: '#3fb950'},
-        {text: '  Deploying v1.2.0 to fleet...', color: '#8b949e'},
+        {text: "$ protocol deploy 'v1.2.4'", color: '#3fb950'},
+        {text: '  Deploying v1.2.4 to fleet...', color: '#8b949e'},
         {text: '  4 nodes pulling...', color: '#e3b341'},
       ];
     case 'healthCheck':
       return [
-        {text: '$ protocol deploy', color: '#3fb950'},
+        {text: "$ protocol deploy 'v1.2.4'", color: '#3fb950'},
         {text: '  3/4 nodes healthy', color: '#8b949e'},
         {text: '  1 node self-healing...', color: '#e3b341'},
       ];
     case 'healed':
       return [
-        {text: '$ protocol deploy', color: '#3fb950'},
+        {text: "$ protocol deploy 'v1.2.4'", color: '#3fb950'},
         {text: '  4/4 nodes healthy', color: '#56d364'},
         {text: '  Confirming rollback points...', color: '#8b949e'},
       ];
     case 'complete':
       return [
-        {text: '$ protocol deploy', color: '#3fb950'},
+        {text: "$ protocol deploy 'v1.2.4'", color: '#3fb950'},
         {text: '  ✓ 4/4 nodes deployed (14.2s)', color: '#56d364'},
         {text: '  ✓ All health checks passed', color: '#56d364'},
         {text: '  ✓ Rollback points saved', color: '#56d364'},
       ];
     default:
-      return [{text: '$ protocol deploy', color: '#3fb950'}];
+      return [{text: "$ protocol deploy 'v1.2.4'", color: '#3fb950'}];
   }
 }
 
@@ -390,19 +402,21 @@ function HeroVariantG() {
           overflow: 'hidden',
           background: '#0d1117',
         }}>
-        {/* Ambient glow */}
+        {/* Ambient glow — positioned behind the central terminal */}
         <div
+          className="heroG-ambient-glow"
           style={{
             position: 'absolute',
-            top: '30%',
+            top: '62%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '800px',
+            width: '1100px',
             height: '800px',
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(46,160,67,0.08) 0%, transparent 70%)',
+              'radial-gradient(rgba(46,160,67,0.15) 0%, transparent 65%)',
             pointerEvents: 'none',
+            zIndex: 1,
           }}
         />
 
@@ -417,10 +431,10 @@ function HeroVariantG() {
               statusColor={statusColor}
               opacity={
                 nodePhases[i] === 'listening'
-                  ? 0.7
+                  ? 0.55
                   : nodePhases[i] === 'complete'
-                  ? 0.75
-                  : 0.9
+                  ? 0.55
+                  : 0.65
               }
               className="heroG-corner-terminal"
               style={{
@@ -527,15 +541,14 @@ function HeroVariantG() {
             margin: '0 0 1rem',
             zIndex: 2,
           }}>
-          One Command.
+          Lightweight CI/CD
           <br />
           <span
             style={{
               color: '#3fb950',
               fontStyle: 'italic',
-              textShadow: '0 0 40px rgba(63, 185, 80, 0.4)',
             }}>
-            Every Node.
+            That's More Than A Pipeline.
           </span>
         </h1>
 
@@ -572,8 +585,8 @@ function HeroVariantG() {
               overflow: 'hidden',
               boxShadow:
                 phase === 'complete'
-                  ? '0 8px 32px rgba(0,0,0,0.4), 0 0 60px rgba(46,160,67,0.1)'
-                  : '0 8px 32px rgba(0,0,0,0.4), 0 0 80px rgba(46,160,67,0.06)',
+                  ? '0 12px 48px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)'
+                  : '0 12px 48px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)',
               transition: 'border-color 0.5s ease, box-shadow 0.5s ease',
             }}>
             <div
@@ -702,6 +715,8 @@ function HeroVariantG() {
                     background: '#161b22',
                     border: '1px solid #21262d',
                     borderRadius: '6px',
+                    boxShadow:
+                      '0 12px 48px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.4)',
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: '0.6rem',
                     color: '#6e7681',
@@ -746,6 +761,7 @@ function HeroVariantG() {
           }}>
           <a
             href="/getting-started"
+            className="heroG-cta-primary"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
