@@ -15,8 +15,8 @@
   --primary-neutral-200: #21262d;
   --primary-neutral-600: #6e7681;
   --primary-neutral-800: #8b949e;
-  --header-border-bottom: #30363d;
-  --next-prev-border-color: #30363d;
+  --header-border-bottom: #21262d;
+  --next-prev-border-color: #21262d;
 
   --brand: #3fb950;
   --dark: #161b22;
@@ -24,7 +24,7 @@
   --light: #21262d;
   --text: #e6edf3;
   --subtle: #8b949e;
-  --divider: #30363d;
+  --divider: #21262d;
   --tintColor: #1c2128;
   --rn-note-background: rgba(46, 160, 67, 0.12);
   --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -49,7 +49,7 @@
   --ifm-color-emphasis-100: #161b22;
   --ifm-color-emphasis-200: #1c2128;
   --ifm-color-emphasis-300: #21262d;
-  --ifm-color-emphasis-400: #30363d;
+  --ifm-color-emphasis-400: #21262d;
   --ifm-color-emphasis-500: #484f58;
   --ifm-color-emphasis-600: #6e7681;
   --ifm-color-emphasis-700: #8b949e;
@@ -65,7 +65,7 @@
   --ifm-menu-color-background-hover: rgba(63, 185, 80, 0.06);
   --ifm-tabs-color-active: #3fb950;
   --ifm-code-background: rgba(63, 185, 80, 0.08);
-  --ifm-table-border-color: #30363d;
+  --ifm-table-border-color: #21262d;
   --ifm-toc-border-color: #21262d;
   --ifm-toc-link-color: #8b949e;
   --ifm-footer-background-color: #0d1117;
@@ -80,7 +80,7 @@
   --ifm-navbar-link-hover-color: #3fb950;
   --ifm-color-scheme: dark;
   --ifm-pagination-nav-color-hover: var(--ifm-color-emphasis-300);
-  --ifm-hr-border-color: #30363d;
+  --ifm-hr-border-color: #21262d;
   --ifm-alert-color: #e6edf3;
   --ifm-blockquote-color: #e6edf3;
   --ifm-color-secondary-contrast-background: rgba(33, 38, 45, 0.5);
@@ -94,19 +94,25 @@ html,
 body {
   background-color: #0d1117 !important;
   color: #e6edf3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Navbar backdrop blur effect */
 .navbar {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+  border-bottom: 1px solid rgba(33, 38, 45, 0.5);
   transition: all 0.3s ease;
 }
 
 /* Navbar logo & title */
 .navbar__title {
   color: #e6edf3 !important;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
 }
 
 .navbar__brand:hover .navbar__title {
@@ -132,7 +138,7 @@ aside[class^="theme-doc-sidebar-container"] {
 /* Card styling for dark theme */
 .card {
   background-color: #161b22 !important;
-  border-color: #30363d !important;
+  border-color: #21262d !important;
 
   &:hover {
     border-color: #3fb950 !important;
@@ -143,7 +149,7 @@ aside[class^="theme-doc-sidebar-container"] {
 /* Pagination dark styling */
 .pagination-nav__link {
   background-color: #161b22;
-  border-color: #30363d !important;
+  border-color: #21262d !important;
 
   &:hover {
     border-color: #3fb950 !important;
@@ -228,7 +234,7 @@ a:hover {
 .mp-footer {
   position: relative;
   z-index: 1;
-  border-top: 1px solid #30363d;
+  border-top: 1px solid #21262d;
   background-color: #0d1117;
 }
 
@@ -352,7 +358,7 @@ a:hover {
 
 /* Bottom bar */
 .mp-footer__bottom {
-  border-top: 1px solid #30363d;
+  border-top: 1px solid #21262d;
   padding: 1.25rem 0 2rem;
   display: flex;
   justify-content: space-between;
@@ -468,6 +474,18 @@ h6 {
   font-size: var(--ifm-h6-font-size);
 }
 
+/* Italic emphasis in headlines — green glow */
+h1 em,
+h2 em,
+h3 em,
+h4 em,
+h5 em,
+h6 em {
+  color: #3fb950;
+  font-style: italic;
+  text-shadow: 0 0 40px rgba(46, 160, 67, 0.4);
+}
+
 .content-banner {
   background: rgba(46, 160, 67, 0.15);
   color: var(--text);
@@ -513,12 +531,19 @@ blockquote {
 }
 
 .markdown blockquote {
-  border-left: 8px solid var(--ifm-color-warning);
-  padding: 15px 30px 15px 15px;
+  border-left: 3px solid #2ea043;
+  padding: 1.5rem 0 1.5rem 1.5rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  background-color: transparent;
+  box-shadow: 0 0 12px rgba(46, 160, 67, 0.4),
+    -4px 0 20px rgba(46, 160, 67, 0.4);
 }
 
-.alert--warning,
-.markdown blockquote {
+.alert--warning {
   background-color: var(--rn-note-background);
 }
 
@@ -652,8 +677,14 @@ iframe.statusiframe {
 
 .navbar {
   .navbar-github-link {
+    color: #8b949e !important;
+
+    &:hover {
+      color: #e6edf3 !important;
+    }
+
     &:after {
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, filter 0.2s;
       content: "";
       width: 24px;
       height: 24px;
@@ -661,11 +692,12 @@ iframe.statusiframe {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='currentColor' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: center;
-      color: var(--primary-neutral-800);
+      filter: brightness(0) invert(0.7) !important;
     }
 
     &:hover:after {
-      opacity: 0.5;
+      filter: brightness(0) invert(1) !important;
+      opacity: 1;
     }
   }
 }
@@ -824,18 +856,18 @@ iframe.statusiframe {
   --docsearch-hit-background: #0d1117;
   --docsearch-hit-shadow: 0 1px 3px 0 #000;
   --docsearch-key-gradient: linear-gradient(-225deg, #21262d, #161b22);
-  --docsearch-key-shadow: inset 0 -2px 0 0 #30363d, inset 0 0 1px 1px #21262d,
+  --docsearch-key-shadow: inset 0 -2px 0 0 #21262d, inset 0 0 1px 1px #21262d,
     0 1px 2px 1px rgba(0, 0, 0, 0.4);
-  --docsearch-key-pressed-shadow: inset 0 -2px 0 0 #30363d,
+  --docsearch-key-pressed-shadow: inset 0 -2px 0 0 #21262d,
     inset 0 0 1px 1px #21262d, 0 1px 1px 0 rgba(0, 0, 0, 0.4);
   --docsearch-footer-background: #161b22;
-  --docsearch-footer-shadow: 0 -1px 0 0 #30363d, 0 -3px 6px 0 rgba(0, 0, 0, 0.2);
+  --docsearch-footer-shadow: 0 -1px 0 0 #21262d, 0 -3px 6px 0 rgba(0, 0, 0, 0.2);
   --docsearch-logo-color: #3fb950;
   --docsearch-muted-color: #8b949e;
 
   /* Override Hasura's ifm dark theme variables */
   --ifm-scrollbar-track-background-color: #0d1117;
-  --ifm-scrollbar-thumb-background-color: #30363d;
+  --ifm-scrollbar-thumb-background-color: #21262d;
   --ifm-scrollbar-thumb-hover-background-color: #484f58;
   --ifm-table-stripe-background: rgba(255, 255, 255, 0.03);
   --ifm-table-background: transparent;
@@ -847,7 +879,7 @@ iframe.statusiframe {
   --ifm-color-info-contrast-background: rgba(88, 166, 255, 0.1);
   --ifm-color-warning-contrast-background: rgba(227, 179, 65, 0.1);
   --ifm-color-danger-contrast-background: rgba(248, 81, 73, 0.1);
-  --ifm-color-info-dark: #30363d;
+  --ifm-color-info-dark: #21262d;
 
   /* Hasura dark-theme variables that still need override */
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.05);
@@ -878,19 +910,37 @@ main {
 }
 
 /* ---- Table header and stripes ---- */
+table {
+  border: 1px solid #21262d !important;
+  border-collapse: collapse !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
 table thead {
-  background-color: #161b22 !important;
+  background-color: #1c2128 !important;
 }
 
 table thead tr th {
-  color: #e6edf3 !important;
-  border-bottom: 1px solid #30363d !important;
-  border-right: 1px solid #30363d !important;
+  color: #3fb950 !important;
+  text-transform: uppercase;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1rem !important;
+  border-bottom: 2px solid #2ea043 !important;
+  border-right: 1px solid #21262d !important;
 }
 
 table tbody tr td {
-  border-bottom: 1px solid #30363d !important;
-  border-right: 1px solid #30363d !important;
+  color: #8b949e !important;
+  padding: 0.65rem 1rem !important;
+  border-bottom: 1px solid #21262d !important;
+  border-right: 1px solid #21262d !important;
+}
+
+table tbody tr:hover {
+  background-color: #161b22 !important;
 }
 
 table tbody tr td:last-child,
@@ -898,32 +948,55 @@ table thead tr th:last-child {
   border-right: 0 !important;
 }
 
-table {
-  border: 1px solid #30363d !important;
-}
-
 /* ---- Pre/code blocks ---- */
-pre code {
-  background: #0d1117 !important;
-  border: 1px solid #30363d !important;
+pre {
+  background: #1a1e24 !important;
+  border: 1px solid #21262d !important;
+  border-radius: 10px !important;
+  padding: 1.5rem 1.75rem !important;
+  font-family: "JetBrains Mono", "Courier New", monospace !important;
+  font-size: 0.8rem !important;
+  line-height: 1.8 !important;
+  color: #8b949e !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
 }
 
-p code {
-  background: rgba(63, 185, 80, 0.08) !important;
-  border: 1px solid #30363d !important;
+pre code {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+p code,
+li code,
+td code,
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  background: #1c2128 !important;
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.85em !important;
+  color: #3fb950 !important;
+  border: 1px solid #21262d !important;
 }
 
 /* ---- Admonitions/Alerts ---- */
 .alert--secondary,
 .theme-admonition-note {
   background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 .alert--secondary code,
 .theme-admonition-note code {
   background-color: #21262d !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 .alert--success,
@@ -1036,13 +1109,24 @@ details.alert.alert--info {
 /* ---- Navbar ---- */
 .navbar {
   background-color: rgba(13, 17, 23, 0.85) !important;
+  overflow: visible !important;
+}
+
+.navbar__inner {
+  overflow: visible !important;
+}
+
+.navbar__items {
+  overflow: visible !important;
 }
 
 /* Navbar link styling — subtle gray, white on hover, green when active */
 .navbar__link {
   color: #8b949e !important;
   font-family: "JetBrains Mono", "Courier New", monospace !important;
-  font-size: 0.85rem !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   transition: color 0.2s ease !important;
 }
 
@@ -1066,6 +1150,12 @@ details.alert.alert--info {
 .navbar__item.dropdown .navbar__link:hover {
   color: #e6edf3 !important;
   background-color: transparent !important;
+}
+
+/* Right-align dropdown menus to their trigger */
+.navbar__item.dropdown .dropdown__menu {
+  right: 0 !important;
+  left: auto !important;
 }
 
 /* Dropdown caret color */
@@ -1095,12 +1185,14 @@ details.alert.alert--info {
 .dropdown__menu {
   background-color: #161b22 !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
   padding: 0.25rem 0 !important;
+  z-index: 200 !important;
+  overflow: visible !important;
 }
 
 .dropdown__menu li .dropdown__link {
-  border-bottom: 1px solid #30363d !important;
+  border-bottom: 1px solid #21262d !important;
   color: #8b949e !important;
   font-family: "JetBrains Mono", "Courier New", monospace !important;
   font-size: 0.8rem !important;
@@ -1125,10 +1217,31 @@ details.alert.alert--info {
   background-color: #161b22 !important;
 }
 
+/* Color mode toggle icon visibility on dark navbar */
+[class*="colorModeToggle"] button,
+[class*="toggleButton"] {
+  color: #8b949e !important;
+
+  &:hover {
+    color: #e6edf3 !important;
+    background-color: #21262d !important;
+  }
+
+  svg {
+    color: #8b949e !important;
+    fill: #8b949e !important;
+  }
+
+  &:hover svg {
+    color: #e6edf3 !important;
+    fill: #e6edf3 !important;
+  }
+}
+
 /* ---- Card wrapper ---- */
 .card-wrapper .card {
   background: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 /* ---- Tabs ---- */
@@ -1149,6 +1262,17 @@ details.alert.alert--info {
   color: #3fb950 !important;
 }
 
+/* Breadcrumb spacing from navbar */
+.breadcrumbsContainer_Z_bl,
+nav[class*="breadcrumbs"] {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+}
+
+main[class^="docMainContainer"] > .container {
+  padding-top: 2.5rem !important;
+}
+
 /* ---- Sidebar border ---- */
 .container > div > div:first-child {
   border-right: 1px solid #21262d !important;
@@ -1157,7 +1281,7 @@ details.alert.alert--info {
 /* ---- Footer ---- */
 .footer {
   background-color: #0d1117 !important;
-  border-top: 1px solid #30363d !important;
+  border-top: 1px solid #21262d !important;
 }
 
 .footer--dark {
@@ -1167,7 +1291,7 @@ details.alert.alert--info {
 /* ---- Graphiql containers ---- */
 .graphiql-container .graphiql-sessions {
   background-color: #0d1117 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 .graphiql-container .graphiql-editors {
@@ -1177,13 +1301,13 @@ details.alert.alert--info {
 /* ---- Search modal ---- */
 .DocSearch.DocSearch-Button {
   background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 /* ---- Code block container sidebar dark ---- */
 .kitchen-image-container {
   background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 /* ---- Vendor cards ---- */
@@ -1205,7 +1329,7 @@ details.alert.alert--info {
 
 .chat-window {
   background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 .formatted-text {
@@ -1286,7 +1410,7 @@ html[data-theme="dark"] .messages-container code {
 
 .CodeMirror-gutters {
   background-color: #0d1117 !important;
-  border-right: 1px solid #30363d !important;
+  border-right: 1px solid #21262d !important;
 }
 
 .CodeMirror-activeline-background {
@@ -1314,7 +1438,7 @@ li.CodeMirror-hint-active {
 /* ---- Feedback section ---- */
 html[data-theme="dark"] .feedback_Ak7m {
   background-color: #161b22 !important;
-  border-top: 1px solid #30363d !important;
+  border-top: 1px solid #21262d !important;
 }
 
 /* ---- Docs Rating (Was this page helpful?) ---- */
@@ -1326,7 +1450,7 @@ html[data-theme="dark"] .feedback_Ak7m {
   margin-top: 32px !important;
   margin-left: 0 !important;
   background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
   border-radius: 6px !important;
   color: #8b949e !important;
   font-family: "JetBrains Mono", monospace !important;
@@ -1369,7 +1493,7 @@ html[data-theme="dark"] .feedback_Ak7m {
 html[data-theme="dark"] .docsRating {
   color: #8b949e !important;
   background-color: #161b22 !important;
-  border-color: #30363d !important;
+  border-color: #21262d !important;
 }
 
 @media only screen and (max-width: 996px) {
@@ -1381,8 +1505,7 @@ html[data-theme="dark"] .docsRating {
 
 /* ---- Scrollbar styling ---- */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -1390,12 +1513,12 @@ html[data-theme="dark"] .docsRating {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #30363d;
-  border-radius: 4px;
+  background: #2ea043;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #484f58;
+  background: #3fb950;
 }
 
 /* ---- Remove any a:hover blue text color from Hasura ---- */
@@ -1409,22 +1532,25 @@ a:hover {
 [data-theme="dark"] .kitchen-image-container,
 [data-theme="dark"] .theme-admonition-note {
   background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 [data-theme="dark"] .card-wrapper .card {
   background: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 [data-theme="dark"] pre code {
-  background: #0d1117 !important;
-  border: 1px solid #30363d !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 [data-theme="dark"] p code {
-  background: rgba(63, 185, 80, 0.08) !important;
-  border: 1px solid #30363d !important;
+  background: #1c2128 !important;
+  color: #3fb950 !important;
+  border: 1px solid #21262d !important;
 }
 
 [data-theme="dark"] .menu__link--active,
@@ -1447,8 +1573,8 @@ a:hover {
 
 [data-theme="dark"] table tbody tr td,
 [data-theme="dark"] table thead tr th {
-  border-bottom: 1px solid #30363d !important;
-  border-right: 1px solid #30363d !important;
+  border-bottom: 1px solid #21262d !important;
+  border-right: 1px solid #21262d !important;
 }
 
 [data-theme="dark"] .navbar__item.dropdown .navbar__link {
@@ -1539,7 +1665,7 @@ a:hover {
 /* ---- Pagination overrides ---- */
 .pagination-nav__link {
   background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
+  border: 1px solid #21262d !important;
 }
 
 /* ---- Override modal overlay backdrop ---- */
@@ -1558,4 +1684,23 @@ main {
 /* ---- Override the Hasura container border ---- */
 .container > div > div:first-child {
   border-right: 1px solid #21262d !important;
+}
+
+/* ---- Fix Hasura blue link leaks ---- */
+a {
+  color: #3fb950 !important;
+}
+
+.picker-wrapper {
+  border: 2px solid #3fb950 !important;
+}
+
+.alert a:hover {
+  text-decoration-color: #3fb950 !important;
+  -webkit-text-decoration-color: #3fb950 !important;
+}
+
+[data-theme="dark"] .alert a:hover {
+  text-decoration-color: #3fb950 !important;
+  -webkit-text-decoration-color: #3fb950 !important;
 }
