@@ -5,6 +5,7 @@ node_modules
 .docusaurus
 build
 website/build
+website/build-backup
 
 scripts/lint-examples/out/
 

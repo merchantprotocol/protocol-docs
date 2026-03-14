@@ -36,7 +36,8 @@ backup:
         echo "Nothing to back up — website/build/ is empty or missing."
         exit 1
     fi
-    BACKUP="./website/build-backup-$(date +%Y%m%d-%H%M%S)"
+    BACKUP="./website/build-backup"
+    rm -rf "$BACKUP"
     cp -r "$BUILD_DIR" "$BACKUP"
     echo "Backup created: $BACKUP"
 
@@ -73,9 +74,8 @@ confirm:
     #!/usr/bin/env bash
     set -euo pipefail
     BUILD_DIR="./website/build"
-    # Find the most recent backup
-    BACKUP=$(ls -dt ./website/build-backup-* 2>/dev/null | head -1)
-    if [ -z "$BACKUP" ]; then
+    BACKUP="./website/build-backup"
+    if [ ! -d "$BACKUP" ]; then
         echo "No backup found to compare against. Skipping diff."
         exit 0
     fi

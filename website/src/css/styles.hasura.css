@@ -9441,3 +9441,10 @@ html[data-theme="dark"] .messages-container code {
     visibility: hidden;
   }
 }
+
+/* Force white text on CTA buttons */
+a.bottom-cta-button,
+a.bottom-cta-button:hover,
+a.bottom-cta-button:visited {
+  color: #ffffff !important;
+}

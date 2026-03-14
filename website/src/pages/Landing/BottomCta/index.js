@@ -111,13 +111,14 @@ export default function BottomCta() {
           }}>
           <a
             href="/getting-started"
+            className="bottom-cta-button"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: 8,
               padding: '14px 32px',
               background: '#2EA043',
-              color: '#fff',
+              color: '#ffffff',
               fontFamily: "'JetBrains Mono', 'Courier New', monospace",
               fontSize: '0.85rem',
               borderRadius: 8,

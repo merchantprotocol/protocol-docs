@@ -18,7 +18,7 @@ module.exports = {
     'Continuous deployment and configuration management for PHP applications.',
   organizationName: 'merchantprotocol',
   projectName: 'protocol-docs',
-  url: 'https://docs.merchantprotocol.com',
+  url: 'https://protocol.merchantprotocol.com',
   baseUrl: '/',
   clientModules: [
     require.resolve('./modules/jumpToFragment.js'),

@@ -1,0 +1,162 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+.menu {
+  position: fixed;
+  z-index: 10000;
+  min-width: 240px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 1px rgba(63, 185, 80, 0.15);
+  padding: 6px 0;
+  font-family: var(--ifm-font-family-base);
+  animation: menuFadeIn 0.15s ease-out;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid #21262d;
+  margin-bottom: 4px;
+}
+
+.logo {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e6edf3;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.separator {
+  height: 1px;
+  background: #21262d;
+  margin: 4px 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  color: #e6edf3;
+  font-size: 13px;
+  font-family: var(--ifm-font-family-monospace);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.1s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    background: rgba(63, 185, 80, 0.1);
+    color: #3fb950;
+    text-decoration: none;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  &:hover svg {
+    opacity: 1;
+  }
+}
+
+.submenuParent {
+  position: relative;
+}
+
+.submenuTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  color: #e6edf3;
+  font-size: 13px;
+  font-family: var(--ifm-font-family-monospace);
+  cursor: pointer;
+  transition: background 0.1s;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+
+  &:hover {
+    background: rgba(63, 185, 80, 0.1);
+    color: #3fb950;
+  }
+}
+
+.submenuLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+}
+
+.submenuTrigger:hover .submenuLabel svg {
+  opacity: 1;
+}
+
+.chevron {
+  width: 10px;
+  height: 10px;
+  opacity: 0.5;
+}
+
+.submenu {
+  position: absolute;
+  left: 100%;
+  top: -6px;
+  min-width: 220px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  padding: 6px 0;
+  animation: menuFadeIn 0.12s ease-out;
+}
+
+.submenuLeft {
+  left: auto;
+  right: 100%;
+}

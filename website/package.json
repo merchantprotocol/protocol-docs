@@ -13,7 +13,7 @@
     "clean": "rm -rf build .docusaurus",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build && yarn run update-redirect ./build/_redirects ./versions.json",
+    "build": "docusaurus build",
     "build:fast": "PREVIEW_DEPLOY=true yarn run build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
