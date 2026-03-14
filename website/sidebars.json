@@ -1,25 +1,15 @@
 {
   "docs": {
-    "Introduction": [
-      "index",
-      "getting-started",
-      "installation"
-    ],
-    "Usage": [
-      "commands",
-      "configuration",
-      "secrets"
-    ],
+    "Introduction": ["index", "getting-started", "installation"],
+    "Usage": ["commands", "configuration", "secrets"],
     "Deployment": [
       "deployment-types",
       "blue-green",
+      "cloudflare",
       "deployment-sops",
       "migration"
     ],
-    "Architecture": [
-      "architecture",
-      "troubleshooting"
-    ],
+    "Architecture": ["architecture", "troubleshooting"],
     "Security & Compliance": [
       "security",
       "soc2",

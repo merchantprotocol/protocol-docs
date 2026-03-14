@@ -1,19 +1,24 @@
 {
-    "name": "www-heropixel-com",
-    "docker": {
-        "container_name": "www-heropixel-com",
-        "image": null
-    },
-    "git": {
-        "remote": "git@github.com:Signal-ID\/www-heropixel-com.git",
-        "remotename": "origin",
-        "branch": "main"
-    },
-    "configuration": {
-        "local": "..\/www-heropixel-com-config",
-        "remote": "git@github.com:Signal-ID\/www-heropixel-com-config.git",
-        "environments": [
-            "localhost-byrdziak"
-        ]
-    }
+  "name": "protocol-docs",
+  "docker": {
+    "container_name": "protocol-docs",
+    "image": null
+  },
+  "git": {
+    "remote": "git@github.com:merchantprotocol/protocol-docs.git",
+    "remotename": "origin",
+    "branch": "main"
+  },
+  "configuration": {
+    "local": "../protocol-docs-config",
+    "remote": "git@github.com:merchantprotocol/protocol-docs-config.git",
+    "environments": ["localhost-byrdziak"]
+  },
+  "cloudflare": {
+    "project_name": "protocol-docs",
+    "production_url": "https://protocol.merchantprotocol.com",
+    "local_origin": "https://localhost",
+    "static_dir": "./website/build",
+    "min_files": 10
+  }
 }

@@ -256,6 +256,69 @@ protocol shadow:status --json         # raw JSON output
 
 ---
 
+## Cloudflare Pages
+
+Commands for deploying static sites to Cloudflare Pages. Requires the `cloudflare` plugin (`protocol plugin:enable cloudflare`).
+
+### `protocol cf:init`
+
+Interactive setup wizard. Connects to Cloudflare, creates or selects a Pages project, configures your `protocol.json`, and generates a `.cfignore`.
+
+```bash
+protocol cf:init
+```
+
+### `protocol cf:prepare`
+
+Prepare static output for deployment. Copies `404/index.html` to `404.html` for Cloudflare, and rewrites all localhost URLs to your production URL across HTML, JS, CSS, JSON, XML, and SVG files.
+
+```bash
+protocol cf:prepare
+```
+
+### `protocol cf:deploy`
+
+Full deployment pipeline — prepare, verify, diff, backup, and deploy to Cloudflare Pages.
+
+```bash
+protocol cf:deploy
+```
+
+### `protocol cf:verify`
+
+Verify static output is complete and ready. Checks file count, key pages, and 404 handling.
+
+```bash
+protocol cf:verify
+```
+
+### `protocol cf:status`
+
+Compare local static files against the last deployed backup using checksums.
+
+```bash
+protocol cf:status
+```
+
+### `protocol cf:backup`
+
+Create a manual backup of current static output.
+
+```bash
+protocol cf:backup
+```
+
+### `protocol cf:backups`
+
+List or clean up deployment backups.
+
+```bash
+protocol cf:backups
+protocol cf:backups --clean
+```
+
+---
+
 ## Secrets
 
 Managing your encryption key and encrypted files.
@@ -563,6 +626,7 @@ protocol incident:report 3 "Dependency CVE discovered" --no-issue
 ```
 
 Severity levels:
+
 - **P1** — Security audit failures or multiple containers down
 - **P2** — SOC 2 check failures or single container down
 - **P3** — Warnings from audits or checks
@@ -672,40 +736,44 @@ protocol git:slave:stop
 
 Housekeeping and setup commands.
 
-| Command | What it does |
-|---|---|
-| `protocol self:update` | Update Protocol to the latest release |
-| `protocol self:update --nightly` | Update to the latest commit (bleeding edge) |
-| `protocol self:global` | Install Protocol as a global command (symlink to `/usr/local/bin`) |
-| `protocol cron:add` | Add a `@reboot` crontab entry so Protocol restarts after reboots |
-| `protocol cron:remove` | Remove the crontab entry |
-| `protocol key:generate` | Generate an SSH deploy key for pulling from private repos |
-| `protocol nginx:logs` | Tail nginx and PHP-FPM logs from inside the container |
-| `protocol migrate` | Interactive wizard to convert from branch-based to release-based deployment |
+| Command                          | What it does                                                                |
+| -------------------------------- | --------------------------------------------------------------------------- |
+| `protocol self:update`           | Update Protocol to the latest release                                       |
+| `protocol self:update --nightly` | Update to the latest commit (bleeding edge)                                 |
+| `protocol self:global`           | Install Protocol as a global command (symlink to `/usr/local/bin`)          |
+| `protocol cron:add`              | Add a `@reboot` crontab entry so Protocol restarts after reboots            |
+| `protocol cron:remove`           | Remove the crontab entry                                                    |
+| `protocol key:generate`          | Generate an SSH deploy key for pulling from private repos                   |
+| `protocol nginx:logs`            | Tail nginx and PHP-FPM logs from inside the container                       |
+| `protocol migrate`               | Interactive wizard to convert from branch-based to release-based deployment |
 
 ---
 
 ## Quick Reference
 
-| What you want to do | Command |
-|---|---|
-| Set up a new project | `protocol init` |
-| Start everything | `protocol start` |
-| Stop everything | `protocol stop` |
-| Check what's running | `protocol status` |
-| Create a release | `protocol release:create` |
-| Deploy to all nodes | `protocol deploy:push 1.2.0` |
-| Roll back | `protocol deploy:rollback` |
-| Zero-downtime deploy | `protocol shadow:build v1.2.0` then `protocol shadow:start` |
-| Shadow rollback (instant) | `protocol shadow:rollback` |
-| Set up configs & secrets | `protocol config:init` |
-| Run a command in Docker | `protocol docker:exec "your command"` |
-| View your encryption key | `protocol secrets:key` |
-| Run a security scan | `protocol security:audit` |
-| Check SOC 2 readiness | `protocol soc2:check` |
-| Install SIEM agent | `protocol siem:install --manager=host` |
-| View incident dashboard | `protocol incident:status` |
-| Report an incident | `protocol incident:report 1 "msg"` |
-| Capture forensic snapshot | `protocol incident:snapshot` |
-| Real-time monitoring | `protocol top` |
-| Update Protocol itself | `protocol self:update` |
+| What you want to do            | Command                                                     |
+| ------------------------------ | ----------------------------------------------------------- |
+| Set up a new project           | `protocol init`                                             |
+| Start everything               | `protocol start`                                            |
+| Stop everything                | `protocol stop`                                             |
+| Check what's running           | `protocol status`                                           |
+| Create a release               | `protocol release:create`                                   |
+| Deploy to all nodes            | `protocol deploy:push 1.2.0`                                |
+| Roll back                      | `protocol deploy:rollback`                                  |
+| Zero-downtime deploy           | `protocol shadow:build v1.2.0` then `protocol shadow:start` |
+| Shadow rollback (instant)      | `protocol shadow:rollback`                                  |
+| Set up Cloudflare Pages        | `protocol cf:init`                                          |
+| Prepare static site for deploy | `protocol cf:prepare`                                       |
+| Deploy to Cloudflare Pages     | `protocol cf:deploy`                                        |
+| Check static site changes      | `protocol cf:status`                                        |
+| Set up configs & secrets       | `protocol config:init`                                      |
+| Run a command in Docker        | `protocol docker:exec "your command"`                       |
+| View your encryption key       | `protocol secrets:key`                                      |
+| Run a security scan            | `protocol security:audit`                                   |
+| Check SOC 2 readiness          | `protocol soc2:check`                                       |
+| Install SIEM agent             | `protocol siem:install --manager=host`                      |
+| View incident dashboard        | `protocol incident:status`                                  |
+| Report an incident             | `protocol incident:report 1 "msg"`                          |
+| Capture forensic snapshot      | `protocol incident:snapshot`                                |
+| Real-time monitoring           | `protocol top`                                              |
+| Update Protocol itself         | `protocol self:update`                                      |
