@@ -6,6 +6,7 @@ node_modules
 build
 website/build
 website/build-backup
+.backups/
 
 scripts/lint-examples/out/
 
